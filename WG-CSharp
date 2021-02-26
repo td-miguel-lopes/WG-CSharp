@@ -1,0 +1,13 @@
+node {
+  stage('SCM') {
+    git 'https://github.com/td-miguel-lopes/WG-CSharp.git'
+  }
+  stage('Build + SonarQube analysis') {
+    def sqScannerMsBuildHome = tool 'MSBuild'
+    withSonarQubeEnv('sonarqube') {
+       "mono /Users/miguel.lopes/Downloads/msbuild/SonarScanner.MSBuild.exe begin /k:TD2 /d:sonar.host.url=http://localhost:9000 /d:sonar.login=b568fcede2eeef253c9932480044b919a62dfc08"
+       'mono /Users/miguel.lopes/Downloads/msbuild/MSBuild.exe /t:Rebuild'
+       "mono /Users/miguel.lopes/Downloads/msbuild/SonarScanner.MSBuild.exe end /d:sonar.login=b568fcede2eeef253c9932480044b919a62dfc08"
+    }
+  }
+}
