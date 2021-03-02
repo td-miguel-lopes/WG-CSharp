@@ -5,7 +5,7 @@ node {
   stage('Build + SonarQube analysis') {
     def sqScannerMsBuildHome = tool 'MSBuild'
     withSonarQubeEnv('sonarqube') {
-       "mono /Users/miguel.lopes/Downloads/msbuild/SonarScanner.MSBuild.exe begin /k:TD2 /d:sonar.host.url=http://localhost:9000 /d:sonar.login=MSBuild.exe begin /k:TD2 /d:sonar.host.url=http://localhost:9000 /d:sonar.login=3c59de47a4f621b1e64d8681bb21caf3c3d85499"
+       "mono /Users/miguel.lopes/Downloads/msbuild/SonarScanner.MSBuild.exe begin /k:TD2 /d:sonar.host.url=http://localhost:9000 /d:sonar.login=3c59de47a4f621b1e64d8681bb21caf3c3d85499"
        'mono /Users/miguel.lopes/Downloads/msbuild/MSBuild.exe /t:Rebuild'
        "mono /Users/miguel.lopes/Downloads/msbuild/SonarScanner.MSBuild.exe end /d:sonar.login=3c59de47a4f621b1e64d8681bb21caf3c3d85499"
     }
